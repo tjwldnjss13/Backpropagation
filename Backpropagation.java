@@ -171,6 +171,7 @@ public class Backpropagation {
         double previousError = 0;
         int numErrorStable = 1;
         int epoch = 0;
+        int numPattern = 0;
         char repeat = ' ';
 
         bp.initWeight();
@@ -178,6 +179,8 @@ public class Backpropagation {
         bp.initPatternError();
         bp.initTotalError();
         bp.initActualOutput();
+
+        numPattern = 2;
 
         while (isError) {
             bp.initPatternError();
@@ -187,7 +190,7 @@ public class Backpropagation {
 
             //System.out.println("---------------" + epoch + "번째 학습 시작---------------");
 
-            for (int i=0; i < bp.numNumberSample; i++) {
+            for (int i=0; i<numPattern; i++) {
                 //System.out.println();
                 //System.out.println("<패턴 " + (i) + " 학습 시작>");
 
@@ -232,12 +235,12 @@ public class Backpropagation {
         }
         System.out.println();
         System.out.println("<Desired Output>");
-        for (int i=0; i<bp.numNumberSample; i++) {
+        for (int i=0; i<numPattern; i++) {
             bp.printDesiredOutput(i);
         }
         System.out.println();
         System.out.println("<Actual Output>");
-        for (int i=0; i<bp.numNumberSample; i++) {
+        for (int i=0; i<numPattern; i++) {
             bp.printActualOutput(i);
         }
 
@@ -421,7 +424,7 @@ public class Backpropagation {
     }
 
     void printActualOutput(int iNumberSample) {
-        System.out.print("Actual Output ( " + iNumberSample + ") : [");
+        System.out.print("Actual Output  (" + iNumberSample + ") : [");
         for (int i=0; i<this.outputLength; i++) {
             System.out.print(this.actualOutput[iNumberSample][i]);
             if (i != this.outputLength - 1)
