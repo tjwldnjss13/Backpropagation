@@ -167,12 +167,10 @@ public class Backpropagation {
     public static void main(String[] args) {
         Backpropagation bp = new Backpropagation();
         boolean isError = true;
-        boolean stopFlag = false;
         double previousError = 0;
         int numErrorStable = 1;
         int epoch = 0;
         int numPattern = 0;
-        char repeat = ' ';
 
         bp.initWeight();
         bp.initNET();
