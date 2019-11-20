@@ -171,6 +171,7 @@ public class Backpropagation {
         int numErrorStable = 1;
         int epoch = 0;
         int numPattern = 0;
+        boolean repeat = false;
 
         bp.initWeight();
         bp.initNET();
