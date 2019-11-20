@@ -148,7 +148,7 @@ public class Backpropagation {
     int numIncorrect = 0;
     int iTestNumberSample = 0;
     //double learningRate1 = 0.2;
-    double learningRate2 = 0.2;
+    double learningRate2 = 0.01;
     double[][] inputLayerWeight = new double[this.numUnit][this.numHiddenLayerNode];
     double[][][] hiddenLayerWeight = new double[this.numHiddenLayer-1][this.numHiddenLayerNode][this.numHiddenLayerNode];
     double[][] outputLayerWeight = new double[this.numHiddenLayerNode][this.outputLength];
@@ -352,7 +352,7 @@ public class Backpropagation {
                 for (int j=0; j<this.numHiddenLayerNode; j++) {
                     this.inputLayerNET[j] = 0;
                     for (int i=0; i<this.numUnit; i++) {
-                        this.inputLayerNET[j] += Backpropagation.NUMBER_SAMPLE[iNumberSample][i] * this.inputLayerWeight[i][j];
+                        this.inputLayerNET[j] += this.sigmoid(Backpropagation.NUMBER_SAMPLE[iNumberSample][i]) * this.inputLayerWeight[i][j];
                     }
                 }
                 //this.printNET(k);
@@ -508,11 +508,11 @@ public class Backpropagation {
                 for (int j=0; j<this.numHiddenLayerNode; j++) {
                     for (int i=0; i<this.numUnit; i++) {
                         if (epoch == 1) {
-                            this.inputLayerWeight[i][j] += this.learningRate2 * this.hiddenLayerDelta[j] * Backpropagation.NUMBER_SAMPLE[iNumberSample][i];
+                            this.inputLayerWeight[i][j] += this.learningRate2 * this.hiddenLayerDelta[j] * this.sigmoid(Backpropagation.NUMBER_SAMPLE[iNumberSample][i]);
                         }
                         else if (epoch > 1) {
                             temp = this.inputLayerWeight[i][j];
-                            this.inputLayerWeight[i][j] += this.learningRate2 * this.hiddenLayerDelta[j] * Backpropagation.NUMBER_SAMPLE[iNumberSample][i];
+                            this.inputLayerWeight[i][j] += this.learningRate2 * this.hiddenLayerDelta[j] * this.sigmoid(Backpropagation.NUMBER_SAMPLE[iNumberSample][i]);
                             this.inputLayerWeight[i][j] += this.learningRate2 * (temp - this.previousInputLayerWeight[i][j]);
                         }
                     }
